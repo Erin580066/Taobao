@@ -54,6 +54,31 @@
 		</dl> -->
 	</div>
 </div>
-
+<script type="text/javascript">
+	var oList = document.querySelector('.list');
+	var divs = oList.getElementsByTagName('div');
+	var top = document.querySelector('.top');
+	var str = '';
+	for(var attr in data){
+		str += '<dl><dt>'+data[attr].title+'</dt><dd><div>';
+		for (var i = 0; i < data[attr].item.length; i++) {
+			str += '<a href="javascript:;">'+data[attr].item[i]+'</a>';
+		}
+		str += '</div></dd></dl>';
+	}
+	oList.innerHTML = str;
+	for (var i = 0; i < divs.length; i++) {
+		divs[i].onclick = function(ev){
+			if(ev.target.tagName.toLowerCase()== 'a'){
+				if(this.prev){
+					this.prev.className = '';
+				}
+				ev.target.className = 'cur';
+				//设置当前为上一个。
+				this.prev = ev.target;
+			}
+		}
+	}
+</script>
 </body>
 </html>
